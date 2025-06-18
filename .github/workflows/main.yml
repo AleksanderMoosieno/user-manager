@@ -12,9 +12,5 @@ jobs:
       - name: if user
         env:
           USER: ${{ env.MY_VARIABLE }}
-      - if: ${{ env.MY_VARIABLE == '' }}
-        run: |
-          echo "Text: '$env_var'
-      - if: ${{ env.USER != '' }}
         run: |
           echo "Text: '$USER'"
