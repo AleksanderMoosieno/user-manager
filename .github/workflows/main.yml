@@ -5,7 +5,7 @@ on:
     types: [opened]
 
 env:
-  ENV_VAR: ${{ env.MY_VARIABLE }}
+  USER: ${{ env.MY_VARIABLE }}
 jobs:
   action_job:
     runs-on: ubuntu-latest
@@ -13,6 +13,6 @@ jobs:
       - if: ${{ env.MY_VARIABLE == '' }}
         run: |
           echo "Text: '$env_var'
-      - if: ${{ env.ENV_VAR != '' }}
+      - if: ${{ env.USER != '' }}
         run: |
-          echo "Text: '$ENV_VAR'"
+          echo "Text: '$USER'"
