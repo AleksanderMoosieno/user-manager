@@ -1,0 +1,44 @@
+name: Check Env Variable from Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  check-env:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get issue body
+      id: get_issue_body
+      uses: appleboy/octo-issue-action@v2.1.1
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        
+    - name: Extract variable value
+      id: extract_value
+      run: |
+        value=$(echo "${{ steps.get_issue_body.outputs.body }}" | grep -oP 'MY_VARIABLE=\K[^\r\n]+')
+        echo "::set-output name=extracted_value::$value"
+        
+    - name: Read.env file
+      id: read_env
+      run: |
+        if [ -f.env ]; then
+          export $(cat.env | xargs)
+          echo "::set-output name=env_content::$(cat.env)"
+        else
+          echo "::error::.env file not found"
+          exit 1
+        fi
+        
+    - name: Compare values
+      run: |
+        expected_value="${{ steps.extract_value.outputs.extracted_value }}"
+        current_value="${MY_VARIABLE}"
+        
+        if [ "$current_value" != "$expected_value" ]; then
+          echo "::error::Values do not match! Expected: $expected_value, got: $current_value"
+          exit 1
+        else
+          echo "::notice::Values match successfully"
+        fi
