@@ -8,6 +8,7 @@ jobs:
   action_job:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: if user
         env:
           USER: ${{ env.MY_VARIABLE }}
