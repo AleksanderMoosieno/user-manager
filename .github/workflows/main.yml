@@ -15,4 +15,4 @@ jobs:
         run: |
           echo "Text: $USER"
       - name: make the script executable and run
-        run: chmod +x ./scripts/script.sh && ./scripts/script.sh $USER
+        run: chmod +x ./scripts/script.sh && ./scripts/script.sh ${{ env.USER }}
