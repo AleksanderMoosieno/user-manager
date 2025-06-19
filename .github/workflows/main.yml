@@ -10,8 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: make the script executable
-        run: chmod +x ./scripts/script.sh
+        run: chmod +x ./scripts/script_user_verification.sh
       - name: run script
         env:
           USER: ${{ github.event.issue.body }}
-        run : ./scripts/script.sh $USER
+        run : ./scripts/script_user_verification.sh $USER
