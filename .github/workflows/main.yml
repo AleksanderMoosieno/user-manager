@@ -9,12 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: user get issue
-        env:
-          USER: ${{ github.event.issue.body }}
-        run: |
-          echo "Text: $USER"
       - name: make the script executable
         run: chmod +x ./scripts/script.sh
       - name: run script
+        env:
+          USER: ${{ github.event.issue.body }}
         run : ./scripts/script.sh $USER
