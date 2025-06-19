@@ -16,18 +16,3 @@ jobs:
           USER: ${{ github.event.issue.body }}
         run: |
           SCRIPT_RESULT=$(./scripts/script_user_verification.sh $USER)
-          
-          if [ $SCRIPT_RESULT != $USER ]; then
-            echo $SCRIPT_RESULT
-            exit 1
-          fi
-          
-          if [ $SCRIPT_RESULT == $USER ]; then
-            echo "USER_NAME=$SCRIPT_RESULT" >> $GITHUB_ENV
-            exit 1
-          fi
-
-      - name: Run Ansible playbook
-        if: ${{ env.USER_NAME != '' }}
-        run: |
-          "echo run Future Ansuble play"
