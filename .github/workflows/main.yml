@@ -19,8 +19,7 @@ jobs:
           SCRIPT_RESULT=$(./scripts/script_user_verification.sh $USER)
           
           if [[ $SCRIPT_RESULT == $USER ]]; then
-             echo "run Ansible GOOD!!" 
+             echo "run Ansible script this GOOD!!" 
           else
-             echo $SCRIPT_RESULT
+             echo "User not found"
           fi
-        
