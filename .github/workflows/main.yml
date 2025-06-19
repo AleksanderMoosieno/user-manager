@@ -1,4 +1,4 @@
-name: Check Env Variable from Issue
+name: Create user from Issue
 
 on:
   issues:
@@ -11,13 +11,16 @@ jobs:
       - uses: actions/checkout@v4
       - name: make the script executable
         run: chmod +x ./scripts/script_user_verification.sh
-      - name: run script
+      - name: check script
+        id: check_script
         env:
           USER: ${{ github.event.issue.body }}
+        run: SCRIPT_RESULT=$(./scripts/script_user_verification.sh $USER)
+      - name: run Ansible
         run: |
-          SCRIPT_RESULT=$(./scripts/script_user_verification.sh $USER)
-          if [[ "$SCRIPT_RESULT" == "$USER" ]]; then
+          if [[ "$steps.check_script.outputs.SCRIPT_RESULT" == "$USER" ]]; then
              echo "GOOD!!!" 
           else
              echo "BAD!!!!"
           fi
+        
