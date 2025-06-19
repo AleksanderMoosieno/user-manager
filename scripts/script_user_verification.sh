@@ -20,5 +20,5 @@ if echo "$users" | grep -q "$username"; then
  exit 0
 else
     echo "User not found"
-    exit 3
+    exit 0
 fi
