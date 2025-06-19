@@ -18,9 +18,9 @@ jobs:
         run: SCRIPT_RESULT=$(./scripts/script_user_verification.sh $USER)
       - name: run Ansible
         run: |
-          if [[ "$steps.check_script.run.SCRIPT_RESULT" == "$USER" ]]; then
+          if [[ "${{ steps.check_script.run.SCRIPT_RESULT }}" == "$USER" ]]; then
              echo "run Ansible GOOD!!" 
           else
-             echo "$steps.check_script.run.SCRIPT_RESULT"
+             echo "${{ steps.check_script.run.SCRIPT_RESULT }}"
           fi
         
