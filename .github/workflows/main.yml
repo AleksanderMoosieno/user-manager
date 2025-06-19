@@ -21,5 +21,5 @@ jobs:
           if [[ $SCRIPT_RESULT == $USER ]]; then
              echo "run Ansible script this GOOD!!" 
           else
-             echo "User not found"
+             echo "User not found!"
           fi
