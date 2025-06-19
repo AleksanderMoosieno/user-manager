@@ -14,3 +14,4 @@ jobs:
           USER: ${{ env.MY_VARIABLE }}
         run: |
           echo "Text: '$USER'"
+          echo "${{ github.event.issue }}"
