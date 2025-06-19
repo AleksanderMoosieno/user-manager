@@ -17,8 +17,8 @@ users=$(echo "$response" | jq -r '.[] | .list | join(",")')
 
 if echo "$users" | grep -q "$username"; then
     echo $username   
- exit 0
+    exit 0
 else
     echo "User not found"
-    exit 0
+    exit 3
 fi
