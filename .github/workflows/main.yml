@@ -25,6 +25,6 @@ jobs:
              echo "$USER"
              echo "${{ steps.check_script.SCRIPT_RESULT }}"
              echo "${{ steps.check_script.run.SCRIPT_RESULT }}"
-             echo "${{ env.USER }"
+             echo "${{ env.USER }}"
           fi
         
