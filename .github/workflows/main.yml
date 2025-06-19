@@ -15,13 +15,15 @@ jobs:
         id: check_script
         env:
           USER: ${{ github.event.issue.body }}
-          SCRIPT_RESULT: $(./scripts/script_user_verification.sh $USER)
         run: |
+        
+          SCRIPT_RESULT=$(./scripts/script_user_verification.sh $USER)
+          
           if [[ $SCRIPT_RESULT == $USER ]]; then
              echo "run Ansible GOOD!!" 
           else
-             echo "$SCRIPT_RESULT"
-             echo "$USER"
+             echo $SCRIPT_RESULT
+             echo $USER
              echo "${{ steps.check_script.SCRIPT_RESULT }}"
              echo "${{ steps.check_script.run.SCRIPT_RESULT }}"
              echo "${{ env.USER }}"
