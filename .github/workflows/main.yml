@@ -16,3 +16,8 @@ jobs:
           USER: ${{ github.event.issue.body }}
         run: |
           SCRIPT_RESULT=$(./scripts/script_user_verification.sh $USER)
+          if [[ "$SCRIPT_RESULT" == "$USER" ]]; then
+             echo "GOOD!!!" 
+          else
+             echo "BAD!!!!"
+          fi
