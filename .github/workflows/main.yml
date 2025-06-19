@@ -15,4 +15,4 @@ jobs:
         env:
           USER: ${{ github.event.issue.body }}
         run: |
-          SCRIPT_RESULT=$(./scripts/script_user_verification.sh $USER)
+          ./scripts/script_user_verification.sh $USER
