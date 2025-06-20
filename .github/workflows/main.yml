@@ -19,6 +19,7 @@ jobs:
           SCRIPT_RESULT=$(./scripts/script_user_verification.sh $USER)
           
           if [[ $SCRIPT_RESULT == $USER ]]; then
+             echo "sssss">>./hosts.ini
              echo "run Ansible script this GOOD!!" 
           else
              echo "User not found!"
